@@ -30,44 +30,31 @@
                 }
             }
         </script>
-        <div class="main">
-            <div id="sidebar">
-                <img class="logo" src="../../../assets/397b43ea8048bab70f0699cbeb3ace55.png">
-                
-                <ul class="navLinks">
-                    <li class="secaoSelecionada"><a>Todos</a></li>
-                    <li><a>Pizza</a></li>
-                    <li><a>Sobremesa</a></li>
-                    <li><a>Pastel</a></li>
-                    <li><a>Açai</a></li>
-                    <li><a>Bebidas</a></li>
-                </ul>
-            </div>
-            
-            <div class="mainContent">
-                <nav class="navbar">
+        <div id="main">
+            <div id="mainContent">
+                <nav id="navbar">
                     <button id="hamburgerMenu" class="iconButton" onclick="menuClick()"></button>
-                    <div class="navbarFunctions">
-                        <button class="shoppingCart iconButton"></button>
-                        <button class="notifications iconButton"></button>
-                        <button class="userProfile iconButton"></button>
+                    <div id="navbarFunctions">
+                        <button id="shoppingCart" class="iconButton"></button>
+                        <button id="notifications" class="iconButton"></button>
+                        <button id="userProfile" class="iconButton"></button>
                     </div>
                 </nav>
                 
                 
-                <div class="cardContainer">
-                    <div class="listingFunctions">
-                        <div class="sectionDiv">
+                <div id="cardContainer">
+                    <div id="listingFunctions">
+                        <div id="sectionDiv">
                             <h2 class="titulo">Produtos</h2>
-                            <h2 class="titulo secaoAtual">Todos</h2>
+                            <h2 id ="secaoAtual" class="titulo">Todos</h2>
                         </div>
                         <div class="sortingFunctions">
-                            <button class="iconButton filter"></button>
-                            <button class="iconButton sortByAlpha"></button>
+                            <button id="filter" class="iconButton"></button>
+                            <button id="sortByAlpha" class="iconButton"></button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
@@ -166,6 +153,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div id="sidebar">
+                <img id="logo" src="../../../assets/397b43ea8048bab70f0699cbeb3ace55.png">
+                
+                <ul id="navLinks">
+                    <li id="secaoSelecionada"><a>Todos</a></li>
+                    <li><a>Pizza</a></li>
+                    <li><a>Sobremesa</a></li>
+                    <li><a>Pastel</a></li>
+                    <li><a>Açai</a></li>
+                    <li><a>Bebidas</a></li>
+                </ul>
             </div>
         </div>
     </body>
