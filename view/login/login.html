@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="..\styleLoginCadastro.css">
+        <link rel="stylesheet" type="text/css" href="..\global.css">
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="main">
+            <img class="banner" src="../../assets/14edc6e22f5cf1f130e7efac6ddb6394.jpg">
+            <div class="main-content">
+                <h2 class="titulo">Bem vindo</h2>
+                <p class="descricao">faça o login para continuar</p>
+                
+                <form class="formulario">
+                    <input class="inputText inputEmail" name="inputEmail" type="text" placeholder="Seu e-mail">
+                    <input class="inputText inputSenha" name="inputSenha" type="password" placeholder="Senha">
+                    
+                    <input class="inputButton inputLogin" type="button" value="Entrar" onclick="entrar()">
+                    
+                    <p class="descricao">ou</p>
+                    
+                    <input class="inputButton inputGoogle" type="button" value="Entrar com o Google">
+                </form>
+                
+                <p class="descricao obs">Não tem uma conta? <a href="../cadastro/cadastro.html">Cadastre</a></p>
+            </div>
+        </div>
+        
+        <script>
+            function entrar() {
+                if (document.getElementsByName('inputEmail').value == 'admin@admin.com' && document.getElementsByName('inputSenha').value !== ''){
+                    window.location = '../admin/listagem de produtos/listagem.html';
+                } else if (document.getElementsByName('inputEmail').value !== '' && document.getElementsByName('inputSenha').value !== ''){
+                    window.location = '../cliente/listagem de produtos/listagem.html';
+                }
+            }
+        </script>
+    </body>
+</html>
