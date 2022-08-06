@@ -9,7 +9,7 @@
 * {
     padding: 0px;
     margin: 0px;
-    outline: 1px red solid;
+    /* outline: 1px red solid; */
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 0.5px

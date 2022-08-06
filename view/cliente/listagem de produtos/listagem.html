@@ -16,7 +16,7 @@
                 
                 menu.style.display = 'flex';
                 
-                document.addEventListener("click", checkClick);
+                document.addEventListener('click', checkClick);
             }
             
             function checkClick(evt){
@@ -25,8 +25,8 @@
                 let targetElement = evt.target;
                 
                 if (targetElement != menu && !menu.contains(event.target) && targetElement != button && !button.contains(event.target)) {
-                    menu.style.display = "none";
-                    document.removeEventListener("click", checkClick);
+                    menu.style.display = 'none';
+                    document.removeEventListener('click', checkClick);
                 }
             }
         </script>
@@ -53,18 +53,19 @@
                         <button class="userProfile iconButton"></button>
                     </div>
                 </nav>
-                <div class="listingFunctions">
-                    <div class="sectionDiv">
-                        <h2 class="titulo">Produtos</h2>
-                        <h2 class="titulo secaoAtual">Todos</h2>
-                    </div>
-                    <div class="sortingFunctions">
-                        <button class="iconButton filter"></button>
-                        <button class="iconButton sortByAlpha"></button>
-                    </div>
-                </div>
+                
                 
                 <div class="cardContainer">
+                    <div class="listingFunctions">
+                        <div class="sectionDiv">
+                            <h2 class="titulo">Produtos</h2>
+                            <h2 class="titulo secaoAtual">Todos</h2>
+                        </div>
+                        <div class="sortingFunctions">
+                            <button class="iconButton filter"></button>
+                            <button class="iconButton sortByAlpha"></button>
+                        </div>
+                    </div>
                     <div class="card">
                         <img src="../../../assets/imagem.png" class="imgCard">
                         <div class="descricaoContainer">

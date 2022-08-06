@@ -14,6 +14,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
+    margin-bottom: 1vh;
 
     user-select: none;
 
@@ -63,6 +65,8 @@
     justify-content: space-between;
     flex-direction: row;
     
+    margin-left: 1%;
+    
     width: 90%;
 
 }
@@ -89,6 +93,8 @@
     justify-content: center;
     align-items: center;
 
+    margin-bottom: 3vh;
+    
     gap: 0.3vh;
 }
 
@@ -207,11 +213,10 @@
 }
 
 
-
 @media (min-width:801px) {
     .main{
         flex-direction: row;
-        overflow-x: none;
+        overflow-x: hidden
     }
     
     .mainContent{
@@ -231,6 +236,8 @@
     
     .navbar{
         justify-content: flex-end;
+        
+        
     }
     
     .navbarFunctions{
