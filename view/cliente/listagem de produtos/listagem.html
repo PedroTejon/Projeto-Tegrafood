@@ -9,35 +9,7 @@
         <title>Listagem de Produtos - Cliente</title>
     </head>
     <body>
-        <script>
-            function menuClick(){
-                let menu = document.getElementById('sidebar');
-                menu.style.display = 'flex';
-                
-                document.addEventListener('click', checkClick);
-            }
-            
-            function checkClick(evt){
-                const menu = document.getElementById('sidebar');
-                const button = document.getElementById('hamburgerMenu');
-                let targetElement = evt.target;
-                
-                if (targetElement != menu && !menu.contains(event.target) && targetElement != button && !button.contains(event.target)) {
-                    menu.style.display = 'none';
-                    document.removeEventListener('click', checkClick);
-                }
-            }
-            
-            function addProdAoCarrinho(){
-                let notification = document.getElementById('notifContainer');
-                
-                notification.style.display = 'flex';
-                
-                setTimeout(() => { notification.style.display = 'none'; }, 3000);
-            }
-            
-            
-        </script>
+        
         <div id="main">
             <div id="mainContent">
                 <nav id="navbar">
@@ -51,21 +23,31 @@
                 
                 <div id="notifContainer">
                     <div id="notif">
-                        <p class="notifText">Item adicionado ao carrinho</p>
+                        <p id="notifMessage" class="notifText">Item adicionado ao carrinho</p>
                         <a id="btnIrAoCarrinho" class="notifText" href="#">Ir para o carrinho</a>
                     </div>
                 </div>
                 
+                
+                
                 <div id="cardContainer">
-                    
                     <div id="listingFunctions">
                         <div id="sectionDiv">
                             <h2 class="titulo">Produtos</h2>
                             <h2 id ="secaoAtual" class="titulo">Todos</h2>
                         </div>
-                        <div class="sortingFunctions">
-                            <button id="filter" class="iconButton"></button>
-                            <button id="sortByAlpha" class="iconButton"></button>
+                        <div id="sortingFunctions">
+                            <button id="filter" class="iconButton" onclick="filterMenuClick()"></button>
+                            <button id="sortByAlpha" class="iconButton" onclick="sortByAlpha()"></button>
+                            <div id="filterOptions">
+                                <p id="txtSorting">Filtrar por preço: </p>
+                                <div id="filterOptionsContainer">
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">Todos</button>
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">R$5 à R$25</button>
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">R$26 à R$45</button>
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">R$46 ou mais</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="card">
@@ -76,95 +58,84 @@
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar" onclick="addProdAoCarrinho()">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
+                        <img class="imgCard" src="../../../assets/imagem.png">
                         <div class="descricaoContainer">
                             <h2 class="nomeProduto">Pizza de Marguerita</h2>
                             <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="../../../assets/imagem.png" class="imgCard">
-                        <div class="descricaoContainer">
-                            <h2 class="nomeProduto">Pizza de Marguerita</h2>
-                            <p class="descricaoProduto">(Muçarela, presunto, tomate , orégano, cebola, ovos)</p>
-                        </div>
-                        <div class="precoContainer">
-                            <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                 </div>
@@ -183,5 +154,78 @@
                 </ul>
             </div>
         </div>
+        <script>
+            const notification = document.getElementById('notifContainer');
+            const notificationMessage = document.getElementById('notifMessage');
+            const notificationButton = document.getElementById('btnIrAoCarrinho');
+            const sidebarMenu = document.getElementById('sidebar');
+            const sidebarButton = document.getElementById('hamburgerMenu');
+            const filterMenu = document.getElementById('filterOptions');
+            const filterButton = document.getElementById('filter');
+            const sortByAlphaButton = document.getElementById('sortByAlpha')
+            
+            var timeoutHandle;
+            
+            function menuClick(){
+                sidebarMenu.style.display = 'flex';
+                
+                document.addEventListener('click', checkSidebarClick);
+            }
+            
+            function checkSidebarClick(evt){
+                let targetElement = evt.target;
+                
+                if (targetElement != sidebarMenu && !sidebarMenu.contains(event.target) && targetElement != sidebarButton && !sidebarButton.contains(event.target)) {
+                    sidebarMenu.style.display = 'none';
+                    document.removeEventListener('click', checkClick);
+                }
+            }
+            
+            function filterMenuClick(){
+                filterMenu.style.display = 'flex';
+                
+                document.addEventListener('click', checkfilterMenuClick);
+            }
+            
+            function checkfilterMenuClick(evt){
+                let targetElement = evt.target;
+                
+                if (targetElement != filterMenu && !filterMenu.contains(event.target) && targetElement != filterButton && !filterButton.contains(event.target)) {
+                    filterMenu.style.display = 'none';
+                    document.removeEventListener('click', checkfilterMenuClick);
+                }
+            }
+            
+            function addProdAoCarrinho(){
+                notificationMessage.textContent = 'Item adicionado ao carrinho';
+                notificationButton.style.display = 'flex';
+                notification.style.display = 'flex';
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function sortByAlpha(){
+                let state = sortByAlphaButton.style.backgroundColor == 'rgba(0, 0, 0, 0.5)';
+                notificationMessage.textContent = state ? 'Itens sendo exibidos em sua ordem padrão' : 'Itens organizados de A à Z';
+                notificationButton.style.display = 'none';
+                sortByAlphaButton.style.backgroundColor = state ? '#DC9000' : 'rgba(0, 0, 0, 0.5)';
+                notification.style.display = 'flex';
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function filtrarPorPreco(evt){
+                notificationMessage.textContent = 'Itens filtrados por: ' + evt.target.textContent;
+                notificationButton.style.display = 'none';
+                notification.style.display = 'flex';
+                
+                console.log('te')
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+        </script>
     </body>
 </html>

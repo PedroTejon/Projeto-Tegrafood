@@ -28,7 +28,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+
     position: fixed;
     top: 0;
     left: 0;
@@ -40,7 +40,7 @@
     user-select: none;
 }
 
-#navbarFunctions{
+#navbarFunctions {
     margin-right: 3vw;
 }
 
@@ -71,7 +71,9 @@
     background: url(../../../assets/User.svg) no-repeat scroll;
 }
 
+
 /* Seção de cards de produtos */
+
 #cardContainer {
     width: 100%;
 
@@ -110,12 +112,63 @@
     border-bottom: 2px solid var(--amarelo);
 }
 
+#sortingFunctions {
+    position: relative;
+}
+
+#filterOptions {
+    height: 32.6vh;
+    width: 55vw;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 5vh;
+    right: -3vw;
+
+    background-color: white;
+
+    border: 0.3px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+#filterOptionsContainer {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1vh;
+}
+
+#txtSorting {
+    color: var(--azul);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.botaoOpcoes {
+    height: 5vh;
+    width: 80%;
+    
+    font-weight: 500;
+}
+
 #filter {
     background: url(../../../assets/filter_alt.svg) no-repeat scroll 0px 5.5px;
 }
 
 #sortByAlpha {
-    background: url(../../../assets/sort_by_alpha.svg) no-repeat scroll 0px 3.5px;
+    background-color: var(--amarelo);
+    mask-image: url(../../../assets/sort_by_alpha.svg);
+    mask-repeat: no-repeat;
+    mask-position-x: 0px;
+    mask-position-y: 3.5px;
 }
 
 
@@ -170,17 +223,6 @@
 .botaoComprar {
     height: 5vh;
     width: 22vw;
-
-    color: white;
-    font-weight: 500;
-
-    background-color: var(--amarelo);
-
-    border: 0px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-
-    cursor: pointer;
 }
 
 
@@ -238,12 +280,12 @@
 #notifContainer {
     height: 8.6vh;
     width: 100%;
-    
+
     display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
     position: fixed;
     bottom: 1vh;
     left: 0vh;
@@ -252,16 +294,16 @@
 #notif {
     height: 100%;
     width: 90%;
-    
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+
     padding: 1vh 3vw;
-    
+
     border-radius: 6px;
-    
+
     background-color: var(--azul);
 }
 
@@ -271,12 +313,12 @@
     font-weight: 500;
 }
 
-#btnIrAoCarrinho{
+#btnIrAoCarrinho {
     height: 100%;
-    
+
     display: flex;
     align-items: center;
-    
+
     color: var(--amarelo);
 }
 
@@ -307,10 +349,18 @@
     #hamburgerMenu {
         display: none;
     }
-    
 
     #notif {
         width: 44%;
+    }
+    
+    #filterOptions{
+        height: 32vh;
+        width: 26vw;
+    }
+    
+    .botaoOpcoes{
+        width: 60%;
     }
 
     #sidebar {
