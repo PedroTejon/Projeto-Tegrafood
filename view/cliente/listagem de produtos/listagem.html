@@ -12,8 +12,6 @@
         <script>
             function menuClick(){
                 let menu = document.getElementById('sidebar');
-                let menuState = menu.style.display === 'none';
-                
                 menu.style.display = 'flex';
                 
                 document.addEventListener('click', checkClick);
@@ -29,6 +27,16 @@
                     document.removeEventListener('click', checkClick);
                 }
             }
+            
+            function addProdAoCarrinho(){
+                let notification = document.getElementById('notifContainer');
+                
+                notification.style.display = 'flex';
+                
+                setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            
         </script>
         <div id="main">
             <div id="mainContent">
@@ -41,8 +49,15 @@
                     </div>
                 </nav>
                 
+                <div id="notifContainer">
+                    <div id="notif">
+                        <p class="notifText">Item adicionado ao carrinho</p>
+                        <a id="btnIrAoCarrinho" class="notifText" href="#">Ir para o carrinho</a>
+                    </div>
+                </div>
                 
                 <div id="cardContainer">
+                    
                     <div id="listingFunctions">
                         <div id="sectionDiv">
                             <h2 class="titulo">Produtos</h2>
@@ -61,7 +76,7 @@
                         </div>
                         <div class="precoContainer">
                             <p class="precoProduto">R$ 60</p>
-                            <button class="botaoComprar">Comprar</button>
+                            <button class="botaoComprar" onclick="addProdAoCarrinho()">Comprar</button>
                         </div>
                     </div>
                     <div class="card">

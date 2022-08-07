@@ -11,6 +11,11 @@
 #mainContent {
     height: auto;
     width: 100%;
+
+    margin-top: 8.25vh;
+    padding-top: 1.75vh;
+
+    overflow-y: auto;
 }
 
 /* Navbar */
@@ -23,12 +28,20 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
 
     margin-bottom: 1vh;
 
     background-color: var(--amarelo);
 
     user-select: none;
+}
+
+#navbarFunctions{
+    margin-right: 3vw;
 }
 
 .iconButton {
@@ -220,6 +233,54 @@
 }
 
 
+/* Notificação */
+
+#notifContainer {
+    height: 8.6vh;
+    width: 100%;
+    
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    position: fixed;
+    bottom: 1vh;
+    left: 0vh;
+}
+
+#notif {
+    height: 100%;
+    width: 90%;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 1vh 3vw;
+    
+    border-radius: 6px;
+    
+    background-color: var(--azul);
+}
+
+.notifText {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+#btnIrAoCarrinho{
+    height: 100%;
+    
+    display: flex;
+    align-items: center;
+    
+    color: var(--amarelo);
+}
+
+
 /* Adaptações de classes globais */
 .titulo {
     color: var(--azul);
@@ -245,6 +306,11 @@
 
     #hamburgerMenu {
         display: none;
+    }
+    
+
+    #notif {
+        width: 44%;
     }
 
     #sidebar {

@@ -12,6 +12,11 @@
 #mainContent {
     height: auto;
     width: 100%;
+
+    margin-top: 8.25vh;
+    padding-top: 1.75vh;
+
+    overflow-y: auto;
 }
 
 
@@ -25,12 +30,20 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    
+    position: fixed;
+    top: 0;
+    left: 0;
 
     margin-bottom: 1vh;
 
     background-color: var(--amarelo);
 
     user-select: none;
+}
+
+#navbarFunctions{
+    margin-right: 3vw;
 }
 
 .iconButton {
@@ -261,7 +274,7 @@
 /* Escolha de usuário */
 
 #userOptions {
-    height: 10vh;
+    height: 9vh;
     width: 92.5%;
 
     display: flex;
@@ -279,7 +292,7 @@
     text-decoration: underline;
 }
 
-#btnFinalizarPedido{
+#btnFinalizarPedido {
     height: 70%;
     width: 50%;
 
@@ -376,6 +389,8 @@
     #secaoFimPedido {
         flex-direction: row;
         align-items: flex-start;
+        
+        margin-top: 5vh;
     }
 
     #cuponsDiv {
