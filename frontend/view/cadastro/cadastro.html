@@ -18,15 +18,77 @@
                 
                 <form class="formulario">
                     <input class="inputText inputUser" type="text" placeholder="Nome completo">
+                    <p id="avisoText" style="color: red; font-size: 12px; display: none; margin-bottom: -3vh"></p>
                     <input class="inputText inputEmail" type="text" placeholder="Seu e-mail">
+                    
+                    <p id="avisoText2" style="color: red; font-size: 12px; display: none; margin-bottom: -3vh"></p>
                     <input class="inputText inputSenha" type="password" placeholder="Senha">
                     <input class="inputText inputSenha" type="password" placeholder="Confirme sua senha">
                     
-                    <input class="inputButton inputLogin" type="button" value="Entrar">
+                    <p id="avisoText3" style="color: green; font-size: 12px; display: none; margin-bottom: -3vh"></p>
+                    <input class="inputButton inputLogin" type="button" value="Entrar" onclick="cadastrar()">
                 </form>
                 
                 <p class="descricao obs">Já tem uma conta? <a href="../login/login.html">Entrar</a></p>
             </div>
         </div>
+        <script>
+            const inputNome = document.getElementsByClassName('inputUser')[0]
+            const inputEmail = document.getElementsByClassName('inputEmail')[0]
+            const inputSenha = document.getElementsByClassName('inputSenha')[0]
+            const inputSenhaC = document.getElementsByClassName('inputSenha')[1]
+            const textoAviso = document.getElementById('avisoText')
+            const textoAviso2 = document.getElementById('avisoText2')
+            const textoAviso3 = document.getElementById('avisoText3')
+
+            function validarEmail(email) {
+                return email.match(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+            }
+
+            function cadastrar() {
+                if (inputSenhaC.value == inputSenha.value) {
+                    if (inputSenha.value.length >= 6) {
+                        if (validarEmail(inputEmail.value)) {
+                            fetch('http://localhost:3000/account/exist', {
+                                method: 'POST',
+                                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ email: inputEmail.value })
+                            })
+                                .then((response) => {
+                                    return response.json();
+                                }).then((data) => {
+                                    if (data.status == true) {
+                                        fetch('http://localhost:3000/accounts/', {
+                                            method: 'POST',
+                                            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ email: inputEmail.value, password: inputSenha.value, nome: inputNome.value, admin: false })
+                                        }).then((response2) => {
+                                            return response2.json();
+                                        }).then((data2) => {
+                                            textoAviso.style.display = 'none';
+                                            textoAviso2.style.display = 'none';
+                                            
+                                            textoAviso3.style.display = 'block';
+                                            textoAviso3.textContent = 'Conta criada com sucesso';
+                                        });
+                                    } else {
+                                        textoAviso.innerText = 'E-mail indisponível'
+                                        textoAviso.style.display = 'block';
+                                    }
+                                });
+                        } else {
+                            textoAviso.innerText = 'E-mail inválido';
+                            textoAviso.style.display = 'block';
+                        }
+                    } else {
+                        textoAviso2.innerText = 'Por favor insira uma senha com 6 ou mais caracteres';
+                        textoAviso2.style.display = 'block';
+                    }
+                } else {
+                    textoAviso2.innerText = 'As duas senhas não estão iguais';
+                    textoAviso2.style.display = 'block';
+                }
+            }
+        </script>
     </body>
 </html>
