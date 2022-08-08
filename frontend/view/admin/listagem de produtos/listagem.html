@@ -146,7 +146,7 @@
             
             function editar(id){
                 if (formContainer.checkValidity()){
-                    fetch('http://localhost:3000/products', {
+                    fetch('https://localhost:3001/products', {
                         method: 'PUT', 
                         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
                         body: JSON.stringify({
@@ -171,7 +171,7 @@
             
             function cadastrar(){
                 if (formContainer.checkValidity()){
-                    fetch('http://localhost:3000/products', {
+                    fetch('https://localhost:3001/products', {
                         method: 'POST', 
                         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
                         body: JSON.stringify({
@@ -277,7 +277,7 @@
             }
             
             function carregarCategoria(categoria) {
-                fetch('http://localhost:3000/products/category', {
+                fetch('https://localhost:3001/products/category', {
                     method: 'POST', 
                     headers: {'Accept': 'application/json','Content-Type': 'application/json'},
                     body: JSON.stringify({category: categoria})
