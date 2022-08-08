@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="..\..\global.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" href="#">
+        <title>Listagem de Produtos - Cliente</title>
+    </head>
+    <body>
+        
+        <div id="main">
+            <div id="mainContent">
+                <nav id="navbar">
+                    <button id="hamburgerMenu" class="iconButton" onclick="menuClick()"></button>
+                    <div id="navbarFunctions">
+                        <button id="notifications" class="iconButton"></button>
+                        <button id="userProfile" class="iconButton"></button>
+                    </div>
+                </nav>
+                
+                <div id="notifContainer">
+                    <div id="notif">
+                        <p id="notifMessage" class="notifText">Item adicionado ao carrinho</p>
+                        <a id="btnIrAoCarrinho" class="notifText" href="../carrinho/carrinho.html">Ir para o carrinho</a>
+                    </div>
+                </div>
+                
+                <div id="addProduto">
+                    <p id="textCadastro" style="color: var(--amarelo); font-weight: 700; font-size: 24px;">Novo item</p>
+                    <form id="formContainer">
+                        <input type="text" id="nomeProduto" placeholder="Nome" required>
+                        <select id="categoriaProduto">
+                            <option value="pizza">Pizza</option>
+                            <option value="sobremesa">Sobremesa</option>
+                            <option value="pastel">Pastel</option>
+                            <option value="açai">Açai</option>
+                            <option value="bebidas">Bebidas</option>
+                        </select>
+                        <textarea id="descricaoProduto" placeholder="Descrição" required></textarea>
+                        <input type="number" id="valorProduto" placeholder="Valor" required>
+                        <input type="text" id="urlProduto" placeholder="URL da imagem" required>
+                    </form>
+                    
+                    <div id="btnSection">
+                        <button id="btnCancelar" onclick="fecharCadastro()">Cancelar</button>
+                        <button id="btnCadastrar" class="botaoFill" onclick="cadastrar()">Cadastrar</button>
+                    </div>
+                </div>
+                
+                <div id="cardContainer">
+                    <div id="listingFunctions">
+                        <div id="sectionDiv">
+                            <h2 class="titulo">Produtos</h2>
+                            <h2 id ="secaoAtual" class="titulo">Todos</h2>
+                        </div>
+                        <div id="sortingFunctions">
+                            <button id="filter" class="iconButton" onclick="filterMenuClick()"></button>
+                            <button id="sortByAlpha" class="iconButton" onclick="sortByAlpha()"></button>
+                            <button id="btnAdd" class="botaoFill" onclick="abrirCadastro()">Add +</button>
+                            <div id="filterOptions">
+                                <p id="txtSorting">Filtrar por preço: </p>
+                                <div id="filterOptionsContainer">
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">Todos</button>
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">R$5 à R$25</button>
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">R$26 à R$45</button>
+                                    <button class="botaoOpcoes botaoFill" onclick="filtrarPorPreco(event)">R$46 ou mais</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="cards"></div>
+                </div>
+                
+            </div>
+            
+            
+            
+            <div id="sidebar">
+                <img id="logo" src="../../../assets/397b43ea8048bab70f0699cbeb3ace55.png">
+                
+                <ul id="navLinks">
+                    <li id="todos" onclick="mudarSeçao('todos')"><a>Todos</a></li>
+                    <li id="pizza" onclick="mudarSeçao('pizza')"><a>Pizza</a></li>
+                    <li id="sobremesa" onclick="mudarSeçao('sobremesa')"><a>Sobremesa</a></li>
+                    <li id="pastel" onclick="mudarSeçao('pastel')"><a>Pastel</a></li>
+                    <li id="açai" onclick="mudarSeçao('açai')"><a>Açai</a></li>
+                    <li id="bebidas" onclick="mudarSeçao('bebidas')"><a>Bebidas</a></li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            const notification = document.getElementById('notifContainer');
+            const notificationMessage = document.getElementById('notifMessage');
+            const notificationButton = document.getElementById('btnIrAoCarrinho');
+            const sidebarMenu = document.getElementById('sidebar');
+            const sidebarButton = document.getElementById('hamburgerMenu');
+            const cardContainer = document.getElementById('cards')
+            const formContainer = document.getElementById('formContainer');
+            const cadastroMenu = document.getElementById('addProduto')
+            const inputNomeProduto = document.getElementById('nomeProduto')
+            const inputCategoriaProduto = document.getElementById('categoriaProduto')
+            const inputDescricaoProduto = document.getElementById('descricaoProduto')
+            const inputValorProduto = document.getElementById('valorProduto')
+            const inputUrlProduto = document.getElementById('urlProduto')
+            const btnCadastrar = document.getElementById('btnCadastrar')
+            const textProduto = document.getElementById('textCadastro')
+            
+            let filtrado = false;
+            let produtosFiltrados;
+            let sortState = true;
+            let timeoutHandle;
+            let produtos;
+            
+            function editarProduto(id){
+                let produto = produtos.filter((produto) => produto.id == id)[0]
+                
+                inputNomeProduto.value = produto.title
+                inputValorProduto.value = produto.price
+                inputDescricaoProduto.textContent = produto.description
+                inputUrlProduto.value = produto.image
+                textProduto.textContent = 'Editar produto'
+                btnCadastrar.textContent = 'Salvar'
+                cadastroMenu.style.display = 'flex';
+                
+                btnCadastrar.onclick = () => {editar(id)}
+            }
+            
+            function abrirCadastro(){
+                textProduto.textContent = 'Novo produto'
+                btnCadastrar.textContent = 'Cadastrar'
+                btnCadastrar.onclick = () => {cadastrar()}
+
+
+                cadastroMenu.style.display = 'flex';
+            }
+            
+            function fecharCadastro(){
+                cadastroMenu.style.display = 'none';
+                formContainer.reset();
+                inputDescricaoProduto.textContent = ''
+            }
+            
+            function editar(id){
+                if (formContainer.checkValidity()){
+                    fetch('http://localhost:3000/products', {
+                        method: 'PUT', 
+                        headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            id: id,
+                            title: inputNomeProduto.value,
+                            price: parseFloat(inputValorProduto.value),
+                            description: inputDescricaoProduto.value,
+                            image: inputUrlProduto.value,
+                            category: inputCategoriaProduto.value
+                        })
+                    })
+                    .then((response)=>{
+                        return response.json();
+                    }).then(function(data) {
+                        
+                        console.log('teste')
+                        fecharCadastro();
+                        carregarCategoria(sessionStorage.getItem('categoria'))
+                    });
+                }
+            }
+            
+            function cadastrar(){
+                if (formContainer.checkValidity()){
+                    fetch('http://localhost:3000/products', {
+                        method: 'POST', 
+                        headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            title: inputNomeProduto.value,
+                            price: parseFloat(inputValorProduto.value),
+                            description: inputDescricaoProduto.value,
+                            image: inputUrlProduto.value,
+                            category: inputCategoriaProduto.value
+                        })
+                    })
+                    .then((response)=>{
+                        return response.json();
+                    }).then(function(data) {
+                        
+                        fecharCadastro();
+                        carregarCategoria(sessionStorage.getItem('categoria'))
+                    });
+                }
+            }
+            
+            function mudarSeçao(categoria){
+                document.getElementById(sessionStorage.getItem('categoria')).style.backgroundColor = 'rgba(0,0,0,0)';
+                sessionStorage.setItem('categoria', categoria);
+                carregar();
+            }
+            
+            function menuClick(){
+                sidebarMenu.style.display = 'flex';
+                
+                document.addEventListener('click', checkSidebarClick);
+            }
+            
+            function checkSidebarClick(evt){
+                let targetElement = evt.target;
+                
+                if (targetElement != sidebarMenu && !sidebarMenu.contains(event.target) && targetElement != sidebarButton && !sidebarButton.contains(event.target)) {
+                    sidebarMenu.style.display = 'none';
+                    document.removeEventListener('click', checkSidebarClick);
+                }
+            }
+            
+            function filterMenuClick(){
+                let filterMenu = document.getElementById('filterOptions');
+                filterMenu.style.display = 'flex';
+                
+                document.addEventListener('click', checkfilterMenuClick);
+            }
+            
+            function checkfilterMenuClick(evt){
+                let filterMenu = document.getElementById('filterOptions');
+                let filterButton = document.getElementById('filter');
+                let targetElement = evt.target;
+                
+                if (targetElement != filterMenu && !filterMenu.contains(event.target) && targetElement != filterButton && !filterButton.contains(event.target)) {
+                    filterMenu.style.display = 'none';
+                    document.removeEventListener('click', checkfilterMenuClick);
+                }
+            }
+            
+            function sortByAlpha(){
+                let sortByAlphaButton = document.getElementById('sortByAlpha');
+                sortState = !sortState;
+                notificationMessage.textContent = sortState ? 'Itens sendo exibidos em sua ordem padrão' : 'Itens organizados de A à Z';
+                notificationButton.style.display = 'none';
+                sortByAlphaButton.style.backgroundColor = sortState ? '#DC9000' : 'rgba(0, 0, 0, 0.5)';
+                notification.style.display = 'flex';
+                
+                
+                console.log(produtos)
+                if (!filtrado){
+                    produtos = sortState ? produtos.sort((a, b) => {return a.id - b.id}) : produtos.sort((a, b) => {return (a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : ((b.title.toUpperCase() > a.title.toUpperCase()) ? -1 : 0)});
+                    carregarProdutos(produtos)
+                } else{
+                    produtosFiltrados = sortState ? produtosFiltrados.sort((a, b) => {return a.id - b.id}) : produtosFiltrados.sort((a, b) => {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)});
+                    carregarProdutos(produtosFiltrados)
+                }
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function filtrarPorPreco(evt){
+                let texto = evt.target.textContent
+                
+                notificationMessage.textContent = 'Itens filtrados por: ' + texto;
+                notificationButton.style.display = 'none';
+                notification.style.display = 'flex';
+                
+                if (texto == 'Todos'){
+                    produtosFiltrados = produtos
+                } else if (texto == 'R$5 à R$25'){
+                    produtosFiltrados = produtos.filter((produto) => {return 5 <= produto.price  && produto.price < 26})
+                } else if (texto == 'R$26 à R$45'){
+                    produtosFiltrados = produtos.filter((produto) => {return 26 <= produto.price  && produto.price < 46})
+                } else if (texto == 'R$46 ou mais'){
+                    produtosFiltrados = produtos.filter((produto) => {return 46 <= produto.price})
+                }
+                
+                carregarProdutos(produtosFiltrados)
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function carregarCategoria(categoria) {
+                fetch('http://localhost:3000/products/category', {
+                    method: 'POST', 
+                    headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+                    body: JSON.stringify({category: categoria})
+                })
+                .then((response)=>{
+                    return response.json();
+                }).then(function(data) {
+                    produtos = data;
+                    
+                    document.getElementById('secaoAtual').textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1)
+                    carregarProdutos(data)
+                });
+            }
+            
+            function carregarProdutos(data){
+                cardContainer.innerHTML = ''
+
+                
+                if (produtos.length == 0){
+                    cardContainer.innerHTML += '<p>Não há produtos nesta categoria</p>'
+                }
+                
+                for (let produto of data){
+                    cardContainer.innerHTML += `<div class="card">
+                        <div class="imageCropper">
+                            <img class="imgCard" src="${produto.image}">
+                        </div>
+                        <div class="descricaoContainer">
+                            <h2 class="nomeProduto">${produto.title}</h2>
+                            <p class="descricaoProduto">${produto.description}</p>
+                        </div>
+                        <div class="precoContainer">
+                            <p class="precoProduto">R$ ${parseFloat(produto.price).toFixed(2)}</p>
+                            <button class="botaoComprar botaoFill" onclick="editarProduto(${produto.id})">Editar</button>
+                        </div>
+                    </div>`
+                };
+            }
+            
+            function carregar(){
+                if (!sessionStorage.getItem('categoria')){
+                    sessionStorage.setItem('categoria', 'todos')
+                    carregarCategoria('todos');
+                } else{
+                    carregarCategoria(sessionStorage.getItem('categoria'));
+                    document.getElementById(sessionStorage.getItem('categoria')).style.backgroundColor = 'var(--amarelo)'
+                }
+            }
+            
+            window.onload = carregar();
+        </script>
+    </body>
+</html>

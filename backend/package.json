@@ -1,0 +1,22 @@
+{
+  "name": "tegrafood-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
+    "nodemon": "^2.0.19",
+    "sqlite": "^4.1.2",
+    "sqlite3": "^5.0.11"
+  },
+  "type": "module"
+}

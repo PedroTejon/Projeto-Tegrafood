@@ -30,7 +30,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+
     position: fixed;
     top: 0;
     left: 0;
@@ -42,7 +42,7 @@
     user-select: none;
 }
 
-#navbarFunctions{
+#navbarFunctions {
     margin-right: 3vw;
 }
 
@@ -88,6 +88,15 @@
     margin-bottom: 3vh;
 }
 
+#cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3vh;
+
+    width: 100%
+}
 
 /* Seção de funções de listagem */
 
@@ -102,6 +111,45 @@
     margin-bottom: 2vh;
 }
 
+
+/* Notificação */
+
+#notifContainer {
+    height: 8.6vh;
+    width: 100%;
+
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: fixed;
+    bottom: 1vh;
+    left: 0vh;
+}
+
+#notif {
+    height: 100%;
+    width: 90%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1vh 3vw;
+
+    border-radius: 6px;
+
+    background-color: var(--azul);
+}
+
+.notifText {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+}
+
 /* Estrutura de card de produto */
 
 .card {
@@ -112,6 +160,8 @@
     justify-content: space-evenly;
     align-items: center;
 
+    padding-left: 1vw;
+
     border: 0.3px solid rgba(0, 0, 0, 0.5);
     /*box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.3);*/
     border-radius: 8px;
@@ -119,13 +169,28 @@
     overflow: none;
 }
 
-.imgCard {
+.imageCropper {
     width: 18%;
     max-width: 80px;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+.imgCard {
+    width: 100%;
+    max-width: 80px;
+
+    display: inline;
+
+    margin: 0 auto;
 }
 
 .descricaoContainer {
-    width: 45vw;
+    width: 40vw;
 }
 
 .nomeProduto {
@@ -162,6 +227,11 @@
     border: 0px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
+}
+
+.delete {
+    margin-top: 4vh;
+    background: url(../../../assets/delete.svg) no-repeat scroll;
 }
 
 
@@ -208,6 +278,7 @@
     height: 100%;
     width: 100%;
 
+    padding-left: 1vw;
     padding-right: 20%;
 
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -227,6 +298,8 @@
 
     border: 0px;
     border-radius: 5px;
+
+    cursor: pointer;
 }
 
 
@@ -335,6 +408,7 @@
     list-style-type: none;
 }
 
+
 #navLinks>li {
     height: 6.29vh;
 
@@ -347,6 +421,9 @@
     font-weight: 500;
 
     border-top: 1px solid white;
+
+    user-select: none;
+    cursor: pointer;
 }
 
 #navLinks>li:last-child {
@@ -386,10 +463,14 @@
         display: none;
     }
 
+    #notif {
+        width: 30%;
+    }
+
     #secaoFimPedido {
         flex-direction: row;
         align-items: flex-start;
-        
+
         margin-top: 5vh;
     }
 

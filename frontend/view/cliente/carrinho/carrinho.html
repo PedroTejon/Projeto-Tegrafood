@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="..\..\global.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="shortcut icon" href="#">
+        <title>Carrinho</title>
+    </head>
+    <body>
+        <script>
+            function menuClick(){
+                let menu = document.getElementById('sidebar');
+                let menuState = menu.style.display === 'none';
+                
+                menu.style.display = 'flex';
+                
+                document.addEventListener('click', checkClick);
+            }
+            
+            function checkClick(evt){
+                const menu = document.getElementById('sidebar');
+                const button = document.getElementById('hamburgerMenu');
+                let targetElement = evt.target;
+                
+                if (targetElement != menu && !menu.contains(event.target) && targetElement != button && !button.contains(event.target)) {
+                    menu.style.display = 'none';
+                    document.removeEventListener('click', checkClick);
+                }
+            }
+        </script>
+        <div id="main">
+            <div id="mainContent">
+                <nav id="navbar">
+                    <button id="hamburgerMenu" class="iconButton" onclick="menuClick()"></button>
+                    <div id="navbarFunctions">
+                        <button id="shoppingCart" class="iconButton"></button>
+                        <button id="notifications" class="iconButton"></button>
+                        <button id="userProfile" class="iconButton"></button>
+                    </div>
+                </nav>
+                
+                <div id="notifContainer">
+                    <div id="notif">
+                        <p id="notifMessage" class="notifText"></p>
+                    </div>
+                </div>
+                
+                <div id="cardContainer">
+                    <div id="listingFunctions">
+                        <div id="sectionDiv">
+                            <h2 class="titulo">Carrinho</h2>
+                        </div>
+                    </div>
+                    <div id="cards"></div>
+                    <div id="secaoFimPedido">
+                        <div id="cuponsDiv">
+                            <h2 class="nomeProduto">Cupom de desconto</h2>
+                            <div id="inputCupomSection">
+                                <input type="text" id="inputCupom"></input>
+                                <button id="btnAddCupom" onclick="addCupom()">+</button>
+                            </div>
+                        </div>
+                        <table id="tabelaTotal">
+                            <tr class="rowTabela">
+                                <th>Subtotal</th>
+                                <th id="subTotal"></th>
+                            </tr>
+                            <tr class="rowTabela">
+                                <th>Entrega</th>
+                                <th><a id="btnCalcularEntrega" onclick="calcularEntrega()">Calcular</a></th>
+                            </tr>
+                            <tr class="rowTabela">
+                                <th>Total</th>
+                                <th id="total"></th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="userOptions">
+                        <a id="btnEscolherMais" href="../listagem de produtos/listagem.html">Escolher mais</a>
+                        <button id="btnFinalizarPedido" onclick="realizarCompra()">Finalizar compra</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="sidebar">
+                <img id="logo" src="../../../assets/397b43ea8048bab70f0699cbeb3ace55.png">
+                
+                <ul id="navLinks">
+                    <li id="todos" onclick="mudarSeçao('todos')"><a>Todos</a></li>
+                    <li id="pizza" onclick="mudarSeçao('pizza')"><a>Pizza</a></li>
+                    <li id="sobremesa" onclick="mudarSeçao('sobremesa')"><a>Sobremesa</a></li>
+                    <li id="pastel" onclick="mudarSeçao('pastel')"><a>Pastel</a></li>
+                    <li id="açai" onclick="mudarSeçao('açai')"><a>Açai</a></li>
+                    <li id="bebidas" onclick="mudarSeçao('bebidas')"><a>Bebidas</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <script>
+            const cardContainer = document.getElementById('cards')
+            const notification = document.getElementById('notifContainer');
+            const notificationMessage = document.getElementById('notifMessage');
+            
+            let produtos;
+            let timeoutHandle;
+            
+            function mudarSeçao(categoria){
+                sessionStorage.setItem('categoria', categoria);
+                window.location = '../listagem de produtos/listagem.html'
+            }
+            
+            function carregar(){
+                produtos = JSON.parse(sessionStorage.getItem('carrinho'))
+                
+                cardContainer.innerHTML = ''
+                
+                if (produtos.length == 0){
+                    cardContainer.innerHTML += '<p>Não há produtos no carrinho</p>'
+                }
+                
+                for (let produto of produtos){
+                    cardContainer.innerHTML += `<div class="card">
+                        <div class="imageCropper">
+                            <img class="imgCard" src="${produto.image}">
+                        </div>
+                        <div class="descricaoContainer">
+                            <h2 class="nomeProduto">${produto.title}</h2>
+                            <p class="descricaoProduto">${produto.description}</p>
+                        </div>
+                        <div class="precoContainer">
+                            <p class="precoProduto">R$ ${produto.price}</p>
+                            <select class="qntdComprar" onchange="calculoPreco()">
+                                <option value="1">1x</option>
+                                <option value="2">2x</option>
+                                <option value="3">3x</option>
+                            </select>
+                        </div>
+                        <button class="delete iconButton" onclick="deletar(${produto.id})"></button>
+                    </div>`
+                };
+                
+                calculoPreco()
+            }
+            
+            function calculoPreco(){
+                precos = produtos.map((produto) => produto.price);
+                
+                total = 0;
+                for (let i=0; i<produtos.length; i++){
+                    total += parseFloat(precos[i]) * parseInt(document.getElementsByClassName('qntdComprar')[i].value);
+                }
+                
+                document.getElementById('subTotal').innerText = 'R$ ' + parseFloat(total).toFixed(2);
+                document.getElementById('total').innerText = 'R$ ' + parseFloat(total).toFixed(2);
+            }
+            
+            function realizarCompra(){
+                notificationMessage.textContent = 'Compra realizada';
+                notification.style.display = 'flex';
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function addCupom(){
+                notificationMessage.textContent = 'Cupom indisponível';
+                notification.style.display = 'flex';
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function calcularEntrega(){
+                notificationMessage.textContent = 'Impossível calcular custo de entrega no momento';
+                notification.style.display = 'flex';
+                
+                window.clearTimeout(timeoutHandle);
+                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
+            }
+            
+            function deletar(id){
+                produtos = produtos.filter((produto) => produto.id != id);
+                
+                sessionStorage.setItem('carrinho', JSON.stringify(produtos));
+                carregar()
+            }
+            
+            window.onload = carregar()
+        </script>
+    </body>
+</html>

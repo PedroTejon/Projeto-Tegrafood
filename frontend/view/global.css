@@ -6,9 +6,11 @@
     --azul: #223263;
 }
 
+
 * {
     padding: 0px;
     margin: 0px;
+    outline: 0px;
     /* outline: 1px red solid; */
     text-decoration: none;
     font-family: 'Poppins', sans-serif;

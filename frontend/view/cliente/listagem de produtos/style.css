@@ -10,6 +10,7 @@
 
 #mainContent {
     height: auto;
+    min-height: 60vh;
     width: 100%;
 
     margin-top: 8.25vh;
@@ -81,15 +82,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.3vh;
 
     margin-bottom: 3vh;
 }
 
+#cards{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3vh;
+    
+    width: 100%
+}
 
 /* Seção de funções de listagem */
 
 #listingFunctions {
+    height: 30px;
     width: 90%;
 
     display: flex;
@@ -138,7 +148,7 @@
 
 #filterOptionsContainer {
     width: 100%;
-    
+
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -155,7 +165,7 @@
 .botaoOpcoes {
     height: 5vh;
     width: 80%;
-    
+
     font-weight: 500;
 }
 
@@ -189,9 +199,24 @@
     overflow: none;
 }
 
-.imgCard {
+.imageCropper {
     width: 18%;
     max-width: 80px;
+
+    position: relative;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+}
+
+.imgCard {
+    width: 100%;
+    max-width: 80px;
+
+    display: inline;
+
+    margin: 0 auto;
 }
 
 .descricaoContainer {
@@ -242,10 +267,6 @@
     background-color: var(--vermelho);
 }
 
-#logo {
-    width: 100%;
-}
-
 #navLinks {
     width: 100%;
 
@@ -264,6 +285,9 @@
     font-weight: 500;
 
     border-top: 1px solid white;
+    
+    user-select: none;
+    cursor: pointer;
 }
 
 #navLinks>li:last-child {
@@ -289,6 +313,7 @@
     position: fixed;
     bottom: 1vh;
     left: 0vh;
+    z-index: 5;
 }
 
 #notif {
@@ -353,13 +378,13 @@
     #notif {
         width: 44%;
     }
-    
-    #filterOptions{
+
+    #filterOptions {
         height: 32vh;
         width: 26vw;
     }
-    
-    .botaoOpcoes{
+
+    .botaoOpcoes {
         width: 60%;
     }
 
