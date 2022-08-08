@@ -98,6 +98,7 @@
     width: 100%
 }
 
+
 /* Seção de funções de listagem */
 
 #listingFunctions {
@@ -149,6 +150,7 @@
     font-size: 12px;
     font-weight: 500;
 }
+
 
 /* Estrutura de card de produto */
 
@@ -382,7 +384,7 @@
 }
 
 
-/* Siderbar */
+/* Sidebar */
 
 #sidebar {
     height: 100vh;
@@ -407,7 +409,6 @@
 
     list-style-type: none;
 }
-
 
 #navLinks>li {
     height: 6.29vh;

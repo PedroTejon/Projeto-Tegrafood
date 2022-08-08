@@ -1,30 +1,31 @@
-.main{
-    width: 100vw;
+.main {
     height: 100vh;
-    
+    width: 100vw;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.banner{
+.banner {
     display: none;
 }
 
-.main-content{
-    width: 100vw;
+.main-content {
     height: 100vh;
-    
+    width: 100vw;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.formulario{
+.formulario {
     height: 50vh;
     width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,43 +34,42 @@
 
 .titulo {
     color: var(--azul)
-    
 }
 
-input{
-    border-radius: 5px;
+input {
     width: 90%;
 
+    border-radius: 5px;
 }
 
-.inputText{
+.inputText {
     height: 7vh;
     width: 77%;
-    
+
     padding-left: 13%;
-    
+
     font-weight: 400;
-    
+
     border: 1px solid #EBF0FF;
 }
 
-.inputUser{
-    background: url(../../assets/User.svg) no-repeat scroll 7px 12px;
+.inputUser {
+    background: url(../assets/User.svg) no-repeat scroll 7px 12px;
 }
 
-.inputEmail{
-    background: url(../../assets/Message.svg) no-repeat scroll 7px 12px;
+.inputEmail {
+    background: url(../assets/Message.svg) no-repeat scroll 7px 12px;
 }
 
-.inputSenha{
-    background: url(../../assets/Password.svg) no-repeat scroll 7px 12px;
+.inputSenha {
+    background: url(../assets/Password.svg) no-repeat scroll 7px 12px;
 }
 
-.inputButton{
+.inputButton {
     height: 8vh;
-    
+
     font-weight: 700;
-    
+
     cursor: pointer;
 }
 
@@ -81,12 +81,14 @@ input{
 
 .inputGoogle {
     color: #9098B1;
+
     border: 1px dotted #9098B1;
+
     background-color: white;
-    background: url(../../assets/Google.svg) no-repeat scroll 7px 12px;
+    background: url(../assets/Google.svg) no-repeat scroll 7px 12px;
 }
 
-.obs{
+.obs {
     font-weight: 400;
 }
 
@@ -95,23 +97,24 @@ a {
 }
 
 @media (min-width:801px) {
-    .banner{
-        display: block;
+    .banner {
+        height: 100%;
         width: 37.5%;
-        height: 100%
+
+        display: block;
     }
-    
-    .main{
+
+    .main {
         flex-direction: row;
     }
-    
-    .main-content{
-        width: 63.5%;
+
+    .main-content {
         height: 100vh;
+        width: 63.5%;
     }
-    
-    .formulario{
+
+    .formulario {
+        height: 60%;
         width: 50%;
-        height: 60%
     }
 }
