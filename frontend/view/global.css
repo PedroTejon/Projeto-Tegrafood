@@ -49,5 +49,11 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
 
+    transition: all 0.2s ease-in-out;
+
     cursor: pointer;
+}
+
+.botaoFill:hover {
+    background-color: #b47500;
 }

@@ -215,6 +215,10 @@
 .imageCropper {
     width: 18%;
     max-width: 80px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     position: relative;
 
@@ -380,15 +384,22 @@ select {
 
     border-top: 1px solid white;
 
+    transition: all 0.2s ease-in-out;
+
     user-select: none;
     cursor: pointer;
 }
+
+#navLinks>li:not(.secaoSelecionada):hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
 
 #navLinks>li:last-child {
     border-bottom: 1px solid white;
 }
 
-#secaoSelecionada {
+.secaoSelecionada {
     background-color: var(--amarelo);
 }
 
@@ -407,6 +418,7 @@ select {
     position: fixed;
     bottom: 1vh;
     left: 0vh;
+    z-index: 5;
 }
 
 #notif {
@@ -438,6 +450,19 @@ select {
     align-items: center;
 
     color: var(--amarelo);
+}
+
+
+/* Animações */
+
+.animarNotif {
+    animation: animarNotif 0.3s ease-in-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes animarNotif {
+    0%   {margin-bottom: -10vh;}
+    100% {margin-bottom: 0vh;}
 }
 
 

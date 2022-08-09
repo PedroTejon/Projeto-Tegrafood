@@ -204,6 +204,10 @@
     width: 18%;
     max-width: 80px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     position: relative;
 
     border-radius: 50%;
@@ -286,16 +290,22 @@
     font-weight: 500;
 
     border-top: 1px solid white;
+    
+    transition: all 0.2s ease-in-out;
 
     user-select: none;
     cursor: pointer;
+}
+
+#navLinks>li:not(.secaoSelecionada):hover {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 #navLinks>li:last-child {
     border-bottom: 1px solid white;
 }
 
-#secaoSelecionada {
+.secaoSelecionada {
     background-color: var(--amarelo);
 }
 
@@ -349,12 +359,26 @@
 }
 
 
+/* Animações */
+
+.animarNotif {
+    animation: animarNotif 0.3s ease-in-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes animarNotif {
+    0%   {margin-bottom: -10vh;}
+    100% {margin-bottom: 0vh;}
+}
+
+
 /* Adaptações de classes globais */
 
 .titulo {
     color: var(--azul);
     font-size: 18px;
 }
+
 
 @media (min-width:801px) {
     #main {

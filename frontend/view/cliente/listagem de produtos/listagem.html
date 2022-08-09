@@ -22,7 +22,7 @@
                     </div>
                 </nav>
                 
-                <div id="notifContainer">
+                <div id="notifContainer" class="animarNotif">
                     <div id="notif">
                         <p id="notifMessage" class="notifText">Item adicionado ao carrinho</p>
                         <a id="btnIrAoCarrinho" class="notifText" href="../carrinho/carrinho.html">Ir para o carrinho</a>
@@ -81,7 +81,7 @@
             let produtos;
             
             function mudarSeçao(categoria){
-                document.getElementById(sessionStorage.getItem('categoria')).style.backgroundColor = 'rgba(0,0,0,0)';
+                document.getElementById(sessionStorage.getItem('categoria')).classList.remove('secaoSelecionada');
                 sessionStorage.setItem('categoria', categoria);
                 carregar();
             }
@@ -141,6 +141,7 @@
             function sortByAlpha(){
                 let sortByAlphaButton = document.getElementById('sortByAlpha');
                 sortState = !sortState;
+                
                 notificationMessage.textContent = sortState ? 'Itens sendo exibidos em sua ordem padrão' : 'Itens organizados de A à Z';
                 notificationButton.style.display = 'none';
                 sortByAlphaButton.style.backgroundColor = sortState ? '#DC9000' : 'rgba(0, 0, 0, 0.5)';
@@ -233,7 +234,7 @@
                     carregarCategoria('todos');
                 } else{
                     carregarCategoria(sessionStorage.getItem('categoria'));
-                    document.getElementById(sessionStorage.getItem('categoria')).style.backgroundColor = 'var(--amarelo)'
+                    document.getElementById(sessionStorage.getItem('categoria')).classList.add('secaoSelecionada');
                 }
             }
             

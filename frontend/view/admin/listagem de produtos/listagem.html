@@ -21,7 +21,7 @@
                     </div>
                 </nav>
                 
-                <div id="notifContainer">
+                <div id="notifContainer" class="animarNotif">
                     <div id="notif">
                         <p id="notifMessage" class="notifText">Item adicionado ao carrinho</p>
                         <a id="btnIrAoCarrinho" class="notifText" href="../carrinho/carrinho.html">Ir para o carrinho</a>
@@ -162,7 +162,6 @@
                         return response.json();
                     }).then(function(data) {
                         
-                        console.log('teste')
                         fecharCadastro();
                         carregarCategoria(sessionStorage.getItem('categoria'))
                     });
@@ -193,7 +192,7 @@
             }
             
             function mudarSeçao(categoria){
-                document.getElementById(sessionStorage.getItem('categoria')).style.backgroundColor = 'rgba(0,0,0,0)';
+                document.getElementById(sessionStorage.getItem('categoria')).classList.remove('secaoSelecionada');
                 sessionStorage.setItem('categoria', categoria);
                 carregar();
             }
@@ -234,13 +233,13 @@
             function sortByAlpha(){
                 let sortByAlphaButton = document.getElementById('sortByAlpha');
                 sortState = !sortState;
+                
                 notificationMessage.textContent = sortState ? 'Itens sendo exibidos em sua ordem padrão' : 'Itens organizados de A à Z';
                 notificationButton.style.display = 'none';
                 sortByAlphaButton.style.backgroundColor = sortState ? '#DC9000' : 'rgba(0, 0, 0, 0.5)';
                 notification.style.display = 'flex';
                 
                 
-                console.log(produtos)
                 if (!filtrado){
                     produtos = sortState ? produtos.sort((a, b) => {return a.id - b.id}) : produtos.sort((a, b) => {return (a.title.toUpperCase() > b.title.toUpperCase()) ? 1 : ((b.title.toUpperCase() > a.title.toUpperCase()) ? -1 : 0)});
                     carregarProdutos(produtos)
@@ -323,7 +322,7 @@
                     carregarCategoria('todos');
                 } else{
                     carregarCategoria(sessionStorage.getItem('categoria'));
-                    document.getElementById(sessionStorage.getItem('categoria')).style.backgroundColor = 'var(--amarelo)'
+                    document.getElementById(sessionStorage.getItem('categoria')).classList.add('secaoSelecionada');
                 }
             }
             
