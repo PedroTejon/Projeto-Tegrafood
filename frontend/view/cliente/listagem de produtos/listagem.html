@@ -10,7 +10,6 @@
         <title>Listagem de Produtos - Cliente</title>
     </head>
     <body>
-        
         <div id="main">
             <div id="mainContent">
                 <nav id="navbar">
@@ -66,6 +65,10 @@
                 </ul>
             </div>
         </div>
+        
+        <script src="..\..\..\services\generalServices.js"></script>
+        <script src="..\..\..\controller\clientFunctions.js"></script>
+        <script src="..\..\..\controller\displayFunctions.js"></script>
         <script>
             const notification = document.getElementById('notifContainer');
             const notificationMessage = document.getElementById('notifMessage');
@@ -79,150 +82,6 @@
             let sortState = true;
             let timeoutHandle;
             let produtos;
-            
-            function mudarSeçao(categoria){
-                document.getElementById(sessionStorage.getItem('categoria')).classList.remove('secaoSelecionada');
-                sessionStorage.setItem('categoria', categoria);
-                carregar();
-            }
-            
-            function menuClick(){
-                sidebarMenu.style.display = 'flex';
-                
-                document.addEventListener('click', checkSidebarClick);
-            }
-            
-            function checkSidebarClick(evt){
-                let targetElement = evt.target;
-                
-                if (targetElement != sidebarMenu && !sidebarMenu.contains(event.target) && targetElement != sidebarButton && !sidebarButton.contains(event.target)) {
-                    sidebarMenu.style.display = 'none';
-                    document.removeEventListener('click', checkClick);
-                }
-            }
-            
-            function filterMenuClick(){
-                let filterMenu = document.getElementById('filterOptions');
-                filterMenu.style.display = 'flex';
-                
-                document.addEventListener('click', checkfilterMenuClick);
-            }
-            
-            function checkfilterMenuClick(evt){
-                let filterMenu = document.getElementById('filterOptions');
-                let filterButton = document.getElementById('filter');
-                let targetElement = evt.target;
-                
-                if (targetElement != filterMenu && !filterMenu.contains(event.target) && targetElement != filterButton && !filterButton.contains(event.target)) {
-                    filterMenu.style.display = 'none';
-                    document.removeEventListener('click', checkfilterMenuClick);
-                }
-            }
-            
-            function addProdAoCarrinho(id){
-                notificationMessage.textContent = 'Item adicionado ao carrinho';
-                notificationButton.style.display = 'flex';
-                notification.style.display = 'flex';
-                
-                produto = produtos.filter((produto) => produto.id == id)[0]
-                carrinho = JSON.parse(sessionStorage.getItem('carrinho'))
-                carrinhoIds = carrinho.map((carrinho) => carrinho.id)
-                
-                if (!carrinhoIds.includes(id)){
-                    carrinho.push(produto);
-                }
-                
-                sessionStorage.setItem('carrinho', JSON.stringify(carrinho))
-                
-                window.clearTimeout(timeoutHandle);
-                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
-            }
-            
-            function sortByAlpha(){
-                let sortByAlphaButton = document.getElementById('sortByAlpha');
-                sortState = !sortState;
-                
-                notificationMessage.textContent = sortState ? 'Itens sendo exibidos em sua ordem padrão' : 'Itens organizados de A à Z';
-                notificationButton.style.display = 'none';
-                sortByAlphaButton.style.backgroundColor = sortState ? '#DC9000' : 'rgba(0, 0, 0, 0.5)';
-                notification.style.display = 'flex';
-                
-                if (!filtrado){
-                    produtos = sortState ? produtos.sort((a, b) => {return a.id - b.id}) : produtos.sort((a, b) => {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)});
-                    carregarProdutos(produtos)
-                } else{
-                    produtosFiltrados = sortState ? produtosFiltrados.sort((a, b) => {return a.id - b.id}) : produtosFiltrados.sort((a, b) => {return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0)});
-                    carregarProdutos(produtosFiltrados)
-                }
-                
-                window.clearTimeout(timeoutHandle);
-                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
-            }
-            
-            function filtrarPorPreco(evt){
-                let texto = evt.target.textContent
-                notificationMessage.textContent = 'Itens filtrados por: ' + texto;
-                notificationButton.style.display = 'none';
-                notification.style.display = 'flex';
-                
-                filtrado = true
-                if (texto == 'Todos'){
-                    produtosFiltrados = produtos;
-                    filtrado = false;
-                } else if (texto == 'R$5 à R$25'){
-                    produtosFiltrados = produtos.filter((produto) => {return 5 <= produto.price  && produto.price < 26})
-                } else if (texto == 'R$26 à R$45'){
-                    produtosFiltrados = produtos.filter((produto) => {return 26 <= produto.price  && produto.price < 46})
-                } else if (texto == 'R$46 ou mais'){
-                    produtosFiltrados = produtos.filter((produto) => {return 46 <= produto.price})
-                }
-                
-                carregarProdutos(produtosFiltrados)
-                
-                window.clearTimeout(timeoutHandle);
-                timeoutHandle = setTimeout(() => { notification.style.display = 'none'; }, 3000);
-            }
-            
-            function carregarCategoria(categoria) {
-                fetch('https://localhost:3001/products/category', {
-                    method: 'POST', 
-                    headers: {'Accept': 'application/json','Content-Type': 'application/json'},
-                    body: JSON.stringify({category: categoria})
-                })
-                .then((response)=>{
-                    return response.json();
-                }).then(function(data) {
-                    produtos = data;
-                    
-                    document.getElementById('secaoAtual').textContent = categoria.charAt(0).toUpperCase() + categoria.slice(1)
-                    carregarProdutos(data)
-                });
-            }
-            
-            function carregarProdutos(data){
-                cardContainer.innerHTML = ''
-
-                
-                if (produtos.length == 0){
-                    cardContainer.innerHTML += '<p>Não há produtos nesta categoria</p>'
-                }
-                
-                for (let produto of data){
-                    cardContainer.innerHTML += `<div class="card">
-                        <div class="imageCropper">
-                            <img class="imgCard" src="${produto.image}">
-                        </div>
-                        <div class="descricaoContainer">
-                            <h2 class="nomeProduto">${produto.title}</h2>
-                            <p class="descricaoProduto">${produto.description}</p>
-                        </div>
-                        <div class="precoContainer">
-                            <p class="precoProduto">R$ ${parseFloat(produto.price).toFixed(2)}</p>
-                            <button class="botaoComprar botaoFill" onclick="addProdAoCarrinho(${produto.id})">Comprar</button>
-                        </div>
-                    </div>`
-                };
-            }
             
             function carregar(){
                 if (!sessionStorage.getItem('carrinho')){

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { insertProduct, updateProduct, selectProducts, selectProduct, deleteProduct, selectProductsCat } from './Controller/products.js';
-import { createTable, createAccount, selectAccounts, verifyLogin, deleteAccount, checkAccount } from './Controller/accounts.js'
+import { insertProduct, updateProduct, selectProducts, selectProduct, deleteProduct, selectProductsCat } from './controller/products.js';
+import { createTable, createAccount, selectAccounts, verifyLogin, deleteAccount, checkAccount } from './controller/accounts.js'
 
 const router = Router();
 

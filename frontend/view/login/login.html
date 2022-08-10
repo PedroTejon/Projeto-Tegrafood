@@ -31,28 +31,10 @@
             </div>
         </div>
         
+        <script src="../../services/signInServices.js"></script>
         <script>
             const inputEmail = document.getElementsByName('inputEmail')[0]
             const inputPassword = document.getElementsByName('inputSenha')[0]
-            
-            function entrar() {
-                fetch('https://localhost:3001/account', {
-                    method: 'POST', 
-                    headers: {'Accept': 'application/json','Content-Type': 'application/json'},
-                    body: JSON.stringify({email: inputEmail.value, password: inputPassword.value})
-                })
-                .then((response)=>{
-                    return response.json();
-                }).then(function(data) {
-                    if (data.status == true){
-                        if (data.admin == true) {
-                            window.location = '../admin/listagem de produtos/listagem.html';
-                        } else{
-                            window.location = '../cliente/listagem de produtos/listagem.html';
-                        }
-                    }
-                });
-            }
         </script>
     </body>
 </html>

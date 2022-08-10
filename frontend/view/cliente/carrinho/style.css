@@ -1,12 +1,3 @@
-#main {
-    height: 100vh;
-    width: 100vw;
-
-    display: flex;
-    flex-direction: column;
-}
-
-
 /* Seção principal */
 
 #mainContent {
@@ -17,60 +8,6 @@
     padding-top: 1.75vh;
 
     overflow-y: auto;
-}
-
-
-/* Navbar */
-
-#navbar {
-    height: 8.25vh;
-    width: 100%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    margin-bottom: 1vh;
-
-    background-color: var(--amarelo);
-
-    user-select: none;
-}
-
-#navbarFunctions {
-    margin-right: 3vw;
-}
-
-.iconButton {
-    height: 30px;
-    width: 30px;
-
-    background: transparent;
-
-    border: 0;
-
-    cursor: pointer;
-}
-
-#hamburgerMenu {
-    background: url(../../../assets/menu.svg) no-repeat scroll 12px 6px;
-}
-
-#shoppingCart {
-    background: url(../../../assets/shopping_cart.svg) no-repeat scroll;
-}
-
-#notifications {
-    background: url(../../../assets/notifications.svg) no-repeat scroll;
-}
-
-#userProfile {
-    background: url(../../../assets/User.svg) no-repeat scroll;
 }
 
 
@@ -88,16 +25,6 @@
     margin-bottom: 3vh;
 }
 
-#cards {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.3vh;
-
-    width: 100%
-}
-
 
 /* Seção de funções de listagem */
 
@@ -110,45 +37,6 @@
 
     margin-left: 1%;
     margin-bottom: 2vh;
-}
-
-
-/* Notificação */
-
-#notifContainer {
-    height: 8.6vh;
-    width: 100%;
-
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    position: fixed;
-    bottom: 1vh;
-    left: 0vh;
-}
-
-#notif {
-    height: 100%;
-    width: 90%;
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    padding: 1vh 3vw;
-
-    border-radius: 6px;
-
-    background-color: var(--azul);
-}
-
-.notifText {
-    color: white;
-    font-size: 12px;
-    font-weight: 500;
 }
 
 
@@ -171,40 +59,8 @@
     overflow: none;
 }
 
-.imageCropper {
-    width: 18%;
-    max-width: 80px;
-
-    position: relative;
-
-    border-radius: 50%;
-
-    overflow: hidden;
-}
-
-.imgCard {
-    width: 100%;
-    max-width: 80px;
-
-    display: inline;
-
-    margin: 0 auto;
-}
-
 .descricaoContainer {
     width: 40vw;
-}
-
-.nomeProduto {
-    color: var(--azul);
-    font-size: 12px;
-    text-shadow: 0px 3px 5px rgba(0, 0, 0, 0.25);
-}
-
-.descricaoProduto {
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 10px;
-    font-weight: 500;
 }
 
 .precoContainer {
@@ -319,11 +175,12 @@
 .rowTabela>th {
     padding: 5px;
 
+    color: var(--azul);
+
     border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .rowTabela>th:nth-child(1) {
-    color: var(--azul);
     font-size: 8px;
     text-align: left;
 
@@ -331,7 +188,6 @@
 }
 
 .rowTabela>th:nth-child(2) {
-    color: var(--azul);
     font-size: 12px;
     text-align: right;
 
@@ -383,86 +239,8 @@
     cursor: pointer;
 }
 
-
-/* Sidebar */
-
-#sidebar {
-    height: 100vh;
-    width: 60vw;
-
-    display: none;
-    flex-direction: column;
-
-    position: fixed;
-    top: 0px;
-    left: 0px;
-
-    background-color: var(--vermelho);
-}
-
-#logo {
-    width: 100%;
-}
-
-#navLinks {
-    width: 100%;
-
-    list-style-type: none;
-}
-
-#navLinks>li {
-    height: 6.29vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-
-    border-top: 1px solid white;
-
-    user-select: none;
-    cursor: pointer;
-}
-
-#navLinks>li:last-child {
-    border-bottom: 1px solid white;
-}
-
-#secaoSelecionada {
-    background-color: var(--amarelo);
-}
-
-
-/* Adaptações de classes globais */
-
-.titulo {
-    color: var(--azul);
-    font-size: 18px;
-}
-
 @media (min-width:801px) {
-    #main {
-        flex-direction: row;
-
-        overflow-x: hidden
-    }
-
-    #mainContent {
-        width: 80%;
-
-        margin-left: 20%;
-    }
-
-    #navbar {
-        justify-content: flex-end;
-    }
-
-    #hamburgerMenu {
-        display: none;
-    }
+    
 
     #notif {
         width: 30%;
@@ -483,11 +261,5 @@
         width: 40%;
 
         margin: 0;
-    }
-
-    #sidebar {
-        width: 20%;
-
-        display: flex;
     }
 }
