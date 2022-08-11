@@ -10,7 +10,7 @@ router.post('/accounts', createAccount)
 router.get('/accounts', selectAccounts)
 router.delete('/accounts', deleteAccount)
 router.post('/account', verifyLogin)
-router.post('/account', checkAccount)
+router.post('/account/exist', checkAccount)
 
 router.get('/products', selectProducts);
 router.post('/products/category', selectProductsCat);
