@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Projeto Tegrafood, feito com o objetivo de replicar um site de compra de alimentos diversos.">
         <link rel="stylesheet" type="text/css" href="..\styleLoginCadastro.css">
         <link rel="stylesheet" type="text/css" href="..\global.css">
         <link rel="shortcut icon" href="#">
@@ -11,14 +12,14 @@
     </head>
     <body>
         <div class="main">
-            <img class="banner" src="../../assets/14edc6e22f5cf1f130e7efac6ddb6394.jpg">
+            <img class="banner" src="../../assets/14edc6e22f5cf1f130e7efac6ddb6394.jpg" alt="banner">
             <div class="main-content">
                 <h2 class="titulo">Bem vindo</h2>
                 <p class="descricao">faça o login para continuar</p>
                 
                 <form class="formulario">
-                    <input class="inputText inputEmail" name="inputEmail" type="text" placeholder="Seu e-mail">
-                    <input class="inputText inputSenha" name="inputSenha" type="password" placeholder="Senha">
+                    <input class="inputText inputEmail" name="inputEmail" type="email" placeholder="Seu e-mail" autocomplete="on">
+                    <input class="inputText inputSenha" name="inputSenha" type="password" placeholder="Senha" autocomplete="on">
                     
                     <input class="inputButton inputLogin" type="button" value="Entrar" onclick="entrar()">
                     

@@ -49,27 +49,6 @@
     position: relative;
 }
 
-#filterOptions {
-    height: 32.6vh;
-    width: 55vw;
-
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    position: absolute;
-    top: 5vh;
-    right: -3vw;
-    z-index: 2;
-
-    background-color: white;
-
-    border: 0.3px solid rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-}
-
 #btnAdd {
     height: 100%;
     width: 50%;
@@ -197,15 +176,6 @@ select {
 @media (min-width:801px) {
     #notif {
         width: 44%;
-    }
-
-    #filterOptions {
-        height: 32vh;
-        width: 26vw;
-    }
-
-    .botaoOpcoes {
-        width: 60%;
     }
 
     #addProduto {
