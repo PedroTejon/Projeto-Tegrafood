@@ -14,9 +14,9 @@ router.post('/account/exist', checkAccount)
 
 router.get('/products', selectProducts);
 router.post('/products/category', selectProductsCat);
-router.get('/product', selectProduct);
+router.get('/products/:id', selectProduct);
 router.post('/products', insertProduct);
-router.put('/products', updateProduct);
-router.delete('/product', deleteProduct);
+router.put('/products/:id', updateProduct);
+router.delete('/products/:id', deleteProduct);
 
 export default router;

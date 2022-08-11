@@ -17,7 +17,7 @@ export async function insertProduct(req, res) {
 export async function updateProduct(req, res) {
     let product = req.body;
     openDb().then(db => {
-        db.run('UPDATE products SET title=?, price=?, description=?, image=?, category=? WHERE id=?', [product.title, product.price, product.description, product.image, product.category, product.id])
+        db.run('UPDATE products SET title=?, price=?, description=?, image=?, category=? WHERE id=?', [product.title, product.price, product.description, product.image, product.category, req.params.id])
         .then(() => res.send({"status": 200}));
     });
 }
@@ -30,12 +30,12 @@ export async function selectProducts(req, res) {
 
 export async function selectProduct(req, res) {
     openDb().then(db => {
-        db.get('SELECT * FROM products WHERE id=?', [req.body.id]).then(product => res.json(product));
+        db.get('SELECT * FROM products WHERE id=?', [req.params.id]).then(product => { console.log(product); res.json(product)});
     });
 }
 
 export async function deleteProduct(req, res) {
-    let product = req.body.id;
+    let product = req.params.id;
     openDb().then(db => {
         db.get('DELETE FROM products WHERE id=?', [product]).then(status => res.send({"status": 200}))
     });
