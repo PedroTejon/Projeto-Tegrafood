@@ -82,7 +82,7 @@ function sortByAlpha() {
 
     notificationMessage.textContent = sortState ? 'Itens sendo exibidos em sua ordem padrão' : 'Itens organizados de A à Z';
     notificationButton.style.display = 'none';
-    sortByAlphaButton.style.backgroundColor = sortState ? '#DC9000' : 'rgba(0, 0, 0, 0.5)';
+    sortByAlphaButton.style.background = sortState ? 'url(../../../assets/sort_by_alpha.svg) no-repeat scroll 0px 3px'  : 'url(../../../assets/sort_by_alpha2.svg)  no-repeat scroll 0px 3px';
     notification.style.display = 'flex';
 
 

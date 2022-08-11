@@ -1,6 +1,6 @@
 function editar(id) {
     if (formContainer.checkValidity()) {
-        fetch('https://localhost:3001/products/' + id, {
+        fetch('http://localhost:3000/products/' + id, {
             method: 'PUT',
             headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify({

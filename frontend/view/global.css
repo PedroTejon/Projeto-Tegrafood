@@ -186,10 +186,7 @@
 }
 
 #sortByAlpha {
-    background-color: var(--amarelo);
-    mask-image: url(../assets/sort_by_alpha.svg);
-    mask-repeat: no-repeat;
-    mask-position: 0px 3.5px;
+    background: url(../assets/sort_by_alpha.svg) no-repeat scroll 0px 3px;
 }
 
 

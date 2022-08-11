@@ -1,5 +1,5 @@
 function entrar() {
-    fetch('https://localhost:3001/account', {
+    fetch('http://localhost:3000/account', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: inputEmail.value, password: inputPassword.value })

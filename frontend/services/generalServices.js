@@ -1,5 +1,5 @@
 function carregarCategoria(categoria) {
-    fetch('https://localhost:3001/products/category', {
+    fetch('http://localhost:3000/products/category', {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify({ category: categoria })
