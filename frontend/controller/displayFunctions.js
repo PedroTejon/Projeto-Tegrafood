@@ -107,11 +107,15 @@ function filtrarPorPreco(evt) {
 
     if (texto == 'Todos') {
         produtosFiltrados = produtos
+        filtrado = false
     } else if (texto == 'R$5 à R$25') {
+        filtrado = true
         produtosFiltrados = produtos.filter((produto) => { return 5 <= produto.price && produto.price < 26 })
     } else if (texto == 'R$26 à R$45') {
+        filtrado = true
         produtosFiltrados = produtos.filter((produto) => { return 26 <= produto.price && produto.price < 46 })
     } else if (texto == 'R$46 ou mais') {
+        filtrado = true
         produtosFiltrados = produtos.filter((produto) => { return 46 <= produto.price })
     }
 
