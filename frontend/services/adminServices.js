@@ -22,7 +22,7 @@ function editar(id) {
 
 function cadastrar() {
     if (formContainer.checkValidity()) {
-        fetch('https://localhost:3001/products', {
+        fetch('http://localhost:3000/products', {
             method: 'POST',
             headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify({
